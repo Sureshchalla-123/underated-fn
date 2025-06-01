@@ -5,7 +5,13 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
-    port: 3000, // only used locally
-    host: true, // allow external access in local dev if needed
+    host: true, // Needed for local + preview hosting
+    port: 3000, // Used only for local dev
+    allowedHosts: [".onrender.com"], // Accept any Render subdomain
+  },
+  preview: {
+    host: true,
+    port: 4173, // default preview port
+    allowedHosts: [".onrender.com"], // Allow preview via Render
   },
 });
